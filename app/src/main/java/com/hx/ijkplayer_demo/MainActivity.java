@@ -18,8 +18,8 @@ import com.hx.ijkplayer_demo.common.PlayerManager;
 public class MainActivity extends AppCompatActivity implements PlayerManager.PlayerStateListener
         , PlayerManager.OnInfoListener {
     public static final String TAG = MainActivity.class.getSimpleName();
-    private String url = "http://pl.youku.com/playlist/m3u8?ctype=12&ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&ev=1&keyframe=1&oip=996949050&sid=241273717793612e7b085&token=3825&type=hd2&vid=XNzk2NTI0MzMy";
-    private String videoPath;
+    private String videoPath = "http://pl.youku.com/playlist/m3u8?ctype=12&ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&ev=1&keyframe=1&oip=996949050&sid=241273717793612e7b085&token=3825&type=hd2&vid=XNzk2NTI0MzMy";
+//    private String videoPath = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";
 
     private PlayerManager player;
 
@@ -28,10 +28,14 @@ public class MainActivity extends AppCompatActivity implements PlayerManager.Pla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1001);
+        if (videoPath == null) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1001);
+            } else {
+                videoPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/video_boot.mp4";
+                initPlayer();
+            }
         } else {
-            videoPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/video_boot.mp4";
             initPlayer();
         }
     }
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements PlayerManager.Pla
     private void initPlayer() {
         player = new PlayerManager(this);
         player.setFullScreenOnly(true);
-        player.setScaleType(PlayerManager.SCALETYPE_FILLPARENT);
+        player.setScaleType(PlayerManager.SCALETYPE_WRAPCONTENT);
         player.setDefaultRetryTime(1000);
         player.live(false);
         player.setPlayerStateListener(this);
