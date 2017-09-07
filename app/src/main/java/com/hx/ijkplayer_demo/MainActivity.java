@@ -18,8 +18,8 @@ import com.hx.ijkplayer_demo.common.PlayerManager;
 public class MainActivity extends AppCompatActivity implements PlayerManager.PlayerStateListener
         , PlayerManager.OnInfoListener {
     public static final String TAG = MainActivity.class.getSimpleName();
-    private String videoPath = "http://pl.youku.com/playlist/m3u8?ctype=12&ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&ev=1&keyframe=1&oip=996949050&sid=241273717793612e7b085&token=3825&type=hd2&vid=XNzk2NTI0MzMy";
-//    private String videoPath = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";
+//    private String videoPath = "http://pl.youku.com/playlist/m3u8?ctype=12&ep=cCaVGE6OUc8H4ircjj8bMiuwdH8KXJZ0vESH%2f7YbAMZuNaHQmjbTwg%3d%3d&ev=1&keyframe=1&oip=996949050&sid=241273717793612e7b085&token=3825&type=hd2&vid=XNzk2NTI0MzMy";
+    private String videoPath = "http://2449.vod.myqcloud.com/2449_22ca37a6ea9011e5acaaf51d105342e3.f20.mp4";
 
     private PlayerManager player;
 
